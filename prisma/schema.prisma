@@ -1,0 +1,98 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id        Int        @id @default(autoincrement())
+  email     String     @unique
+  username  String
+  password  String
+  createdAt DateTime   @default(now()) @map("created_at")
+  updatedAt DateTime   @default(now()) @updatedAt
+  roleId    Int        @default(1)
+  role      Role       @relation(fields: [roleId], references: [id], onUpdate: Cascade, onDelete: Cascade)
+  gamePlayers GamePlayer[]
+  plays      Play[]
+  scores     Score[]
+  gameHistories GameHistory[]
+}
+
+model Role {
+  id        Int        @id @default(autoincrement())
+  roleName  String     @unique 
+  user      User[]     // Relación inversa
+}
+
+
+model BlackCard {
+  id        Int       @id @default(autoincrement())
+  text      String
+  createdAt DateTime  @default(now())
+  plays     Play[]
+}
+
+model WhiteCard {
+  id        Int       @id @default(autoincrement())
+  text      String
+  createdAt DateTime  @default(now())
+  plays     Play[]
+}
+
+model Game {
+  id          Int        @id @default(autoincrement())
+  createdAt   DateTime   @default(now())
+  gamePlayers GamePlayer[]
+  plays       Play[]
+  gameHistories GameHistory[]
+  scores      Score[]
+}
+
+model GamePlayer {
+  id      Int    @id @default(autoincrement())
+  gameId  Int
+  userId  Int
+  game    Game   @relation(fields: [gameId], references: [id])
+  user    User   @relation(fields: [userId], references: [id])
+  @@unique([gameId, userId])
+}
+
+model Play {
+  id           Int         @id @default(autoincrement())
+  gameId       Int
+  userId       Int
+  blackCardId  Int
+  whiteCardId  Int
+  createdAt    DateTime    @default(now())
+  game         Game        @relation(fields: [gameId], references: [id])
+  user         User        @relation(fields: [userId], references: [id])
+  blackCard    BlackCard   @relation(fields: [blackCardId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  whiteCard    WhiteCard   @relation(fields: [whiteCardId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  @@unique([gameId, userId, blackCardId, whiteCardId])
+}
+
+model GameHistory {
+  id        Int       @id @default(autoincrement())
+  gameId    Int
+  userId    Int
+  score     Int
+  createdAt DateTime  @default(now())
+  game      Game      @relation(fields: [gameId], references: [id])
+  user      User      @relation(fields: [userId], references: [id])
+  @@unique([gameId, userId])
+}
+
+model Score {
+  id        Int       @id @default(autoincrement())
+  userId    Int
+  gameId    Int
+  score     Int
+  createdAt DateTime  @default(now())
+  user      User      @relation(fields: [userId], references: [id])
+  game      Game      @relation(fields: [gameId], references: [id])
+  @@unique([userId, gameId])
+}

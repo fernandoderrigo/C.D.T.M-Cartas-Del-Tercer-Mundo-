@@ -1,0 +1,166 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow-x: hidden;
+}
+
+header,
+footer {
+  background-color: #000000;
+  color: #fff;
+  text-align: center;
+  padding: 1em;
+  width: 100%;
+}
+
+nav {
+  margin-bottom: 20px; 
+}
+
+nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  margin-top: 50px;
+  justify-content: center;
+}
+
+nav li {
+  margin: 0 15px; 
+}
+
+nav a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 1.2em;
+  padding: 10px 20px;
+  border-radius: 5px;
+  background-color: #444;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+nav a:hover {
+  background-color: #555;
+  color: #f0f0f0;
+}
+/* Estilo para el ícono de usuario */
+.user-icon {
+  position: absolute; 
+  top: 10px; 
+  right: 2%; 
+}
+
+.user-icon a {
+  color: #fff;
+  font-size: 1.5em;
+  text-decoration: none;
+}
+
+.user-icon a:hover {
+  color: #ddd;
+}
+main {
+  flex: 1;
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+#add-card-container {
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #f9f9f9;
+  text-align: center;
+}
+
+h2 {
+  margin-bottom: 20px;
+  font-size: 1.5em;
+}
+
+label {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 1.1em;
+  text-align: left;
+}
+
+input[type="text"],
+select {
+  width: calc(100% - 22px); 
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 1em;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 1em;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: rgb(0, 0, 0);
+  color: #fff;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #5c5c5c;
+}
+
+.error-message {
+  color: #ff0000;
+  margin-top: 10px;
+}
+
+/* Estilo para la vista previa de la carta */
+#preview-container {
+  width: 250px;
+  height: 150px;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  font-size: 1.2em;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto; 
+}
+
+.black-preview {
+  background-color: #000;
+  color: #fff;
+  border: 2px solid #000;
+}
+
+.white-preview {
+  background-color: #fff;
+  color: #000;
+  border: 2px solid #000;
+}
+
+.joke {
+  font-size: 0.8em; 
+  color: #888; 
+  margin-top: 10px;
+}

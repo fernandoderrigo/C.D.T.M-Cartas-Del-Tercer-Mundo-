@@ -1,0 +1,76 @@
+Método: GET
+URL: http://localhost:3000/api/cards/white
+
+URL: http://localhost:3000/api/cards/black
+
+Método: POST
+URL: http://localhost:3000/api/cards/black
+
+{
+  "text": "Texto de la carta negra"
+}
+
+URL: http://localhost:3000/api/cards/white
+
+{
+  "text": "Texto de la carta blanca"
+}
+
+Método: DELETE
+
+URL: http://localhost:3000/api/cards/black/:id
+
+URL: http://localhost:3000/api/cards/white/:id
+
+Método: PUT
+
+URL: http://localhost:3000/api/cards/black/:id
+
+{
+  "text": "Nuevo texto de la carta negra"
+}
+
+URL: http://localhost:3000/api/cards/white/:id
+
+{
+  "text": "Nuevo texto de la carta blanca"
+}
+
+ Registrar un Usuario
+
+ Método: POST
+
+ URL: http://localhost:3000/api/users/register
+
+ {
+  "email": "nuevo_usuario@example.com",
+  "password": "contraseña_segura",
+  "username": "nombre_de_usuario"
+}
+
+Obtener un Usuario por ID
+
+Método: GET
+URL: http://localhost:3000/api/users/:id
+
+Actualizar un Usuario
+
+Método: PUT
+URL: http://localhost:3000/api/users/:id
+
+{
+  "email": "nuevo_email@example.com", // opcional
+  "username": "nuevo_nombre_de_usuario", // opcional
+  "password": "nueva_contraseña_segura" // opcional
+}
+
+Eliminar un Usuario
+
+Método: DELETE
+URL: http://localhost:3000/api/users/:id
+
+
+Obtener Todos los Usuarios
+
+Método: GET
+URL: http://localhost:3000/api/users

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agregar Cartas</title>
+    <link rel="stylesheet" href="./style/new_cards.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+</head>
+<body>
+    <header>
+        <h1>Agregar Cartas</h1>
+        <nav>
+            <ul>
+                <li><a href="/">Inicio</a></li>
+                <li><a href="new_cards.html">Agregar Cartas</a></li>
+                <li><a href="delete_cards.html">Borrar Cartas</a></li>
+                <li><a href="modify_cards.html">Modificar Cartas</a></li>
+                <li><a href="search_cards.html">Buscar Cartas</a></li>
+            </ul>
+        </nav>
+        <div class="user-icon">
+            <a href="user_profile.html"><i class="fas fa-user"></i></a>
+        </div>
+    </header>
+
+    <main>
+        <div id="add-card-container">
+            <h2>Agregar Nueva Carta</h2>
+            <form id="add-card-form">
+                <label for="card-type">Tipo de Carta</label>
+                <select id="card-type" name="card-type">
+                    <option value="black">Carta Negra</option>
+                    <option value="white">Carta Blanca</option>
+                </select>
+                
+                <label for="card-text">Texto de la Carta</label>
+                <input type="text" id="card-text" name="card-text" placeholder="Escribe el texto aquí" required>
+
+                <button type="submit">Agregar Carta</button>
+                <p class="error-message" id="error-message"></p>
+            </form>
+
+            <!-- Contenedor para la vista previa -->
+            <div id="preview-container" class="black-preview">
+                <p id="preview-text">Vista previa de la carta</p>
+                <p id="joke-text" class="joke">Este es un chiste aleatorio.</p>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Fernando Derrigo</p>
+    </footer>
+
+    <script src="./scripts/new_cards.js"></script>
+</body>
+</html>

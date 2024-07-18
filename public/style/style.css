@@ -1,0 +1,207 @@
+/* Estilo general del cuerpo */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow-x: hidden;
+}
+
+/* Estilo para el encabezado y el pie de página */
+header,
+footer {
+  background-color: #000000;
+  color: #fff;
+  text-align: center;
+  padding: 1em;
+  width: 100%;
+  position: relative; /* Necesario para posicionar el ícono de usuario */
+}
+
+/* Contenedor del encabezado */
+header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Estilo para el encabezado y su contenido */
+h1 {
+  margin: 0;
+}
+
+/* Estilo para la navegación */
+nav {
+  margin-bottom: 20px; 
+}
+
+/* Navegación en el encabezado */
+nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  margin-top: 5%;
+}
+
+nav li {
+  margin: 0 15px; /* Espacio entre los botones del nav */
+}
+
+nav a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 1.2em;
+  padding: 10px 20px;
+  border-radius: 5px;
+  background-color: #444;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+nav a:hover {
+  background-color: #555;
+  color: #f0f0f0;
+}
+
+/* Estilo para el ícono de usuario */
+.user-icon {
+  position: absolute; 
+  top: 10px; 
+  right: 2.8%;
+}
+
+.user-icon a {
+  color: #fff;
+  font-size: 1.5em;
+  text-decoration: none;
+}
+
+.user-icon a:hover {
+  color: #ddd;
+}
+
+/* Estilo para el contenido principal */
+main {
+  flex: 1;
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Estilo para el contenedor de cartas */
+#cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+
+/* Estilo para las cartas */
+.card {
+  width: 250px;
+  height: 150px;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  font-size: 1.2em;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+.black-card {
+  background-color: #000;
+  color: #fff;
+}
+
+.white-card {
+  background-color: #fff;
+  color: #000;
+  border: 2px solid #000;
+}
+
+/* Botones */
+button {
+  padding: 10px 20px;
+  font-size: 1em;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #007bff;
+  color: #fff;
+  margin-top: 20px;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+/* Estilo general para el formulario de agregar cartas */
+#add-card-container {
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #f9f9f9;
+  text-align: center;
+}
+
+h2 {
+  margin-bottom: 20px;
+  font-size: 1.5em;
+}
+
+label {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 1.1em;
+  text-align: left;
+}
+
+input[type="text"],
+select {
+  width: calc(100% - 22px); 
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 1em;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 1em;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: rgb(0, 0, 0);
+  color: #fff;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #5c5c5c;
+}
+
+.error-message {
+  color: #ff0000;
+  margin-top: 10px;
+}
