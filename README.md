@@ -44,19 +44,25 @@ Página Principal
 
 ![principal](https://github.com/fernandoderrigo/C.D.T.M-Cartas-Del-Tercer-Mundo-/blob/main/utils/VistaPrevia/index.png)
 
-Página Principal
-Agregar Cartas
 
 Agregar Cartas
-Borrar Cartas
+
+![add_cards](https://github.com/fernandoderrigo/C.D.T.M-Cartas-Del-Tercer-Mundo-/blob/main/utils/VistaPrevia/Agregar_Cartas.png)
+
 
 Borrar Cartas
-Buscar Cartas
+
+![delete_cards](https://github.com/fernandoderrigo/C.D.T.M-Cartas-Del-Tercer-Mundo-/blob/main/utils/VistaPrevia/Borrar_Cartas.png)
+
 
 Buscar Cartas
-Modificar Cartas
+![search_cards](https://github.com/fernandoderrigo/C.D.T.M-Cartas-Del-Tercer-Mundo-/blob/main/utils/VistaPrevia/Buscar_Cartas.png)
 
 Modificar Cartas
+
+![modify_cards](https://github.com/fernandoderrigo/C.D.T.M-Cartas-Del-Tercer-Mundo-/blob/main/utils/VistaPrevia/Modificar_Cartas.png)
+
+
 
 Instalación
 
