@@ -42,7 +42,7 @@ Aquí tienes una vista previa de las diferentes secciones del juego:
 
 Página Principal
 
-https://github.com/fernandoderrigo/C.D.T.M-Cartas-Del-Tercer-Mundo-/blob/main/utils/VistaPrevia/index.png
+![principal](https://github.com/fernandoderrigo/C.D.T.M-Cartas-Del-Tercer-Mundo-/blob/main/utils/VistaPrevia/index.png)
 
 Página Principal
 Agregar Cartas
