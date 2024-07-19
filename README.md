@@ -36,6 +36,28 @@ Reglas Adicionales
     Cartas Adicionales: Si un jugador usa una carta blanca que no tenga sentido en el contexto de la carta negra, el Juez puede elegir no darle el punto.
     Humor: Este juego está diseñado para ser humorístico y políticamente incorrecto. Se recomienda jugar con un grupo de amigos que compartan un sentido del humor similar.
 
+
+
+Aquí tienes una vista previa de las diferentes secciones del juego:
+
+Página Principal
+
+https://github.com/fernandoderrigo/C.D.T.M-Cartas-Del-Tercer-Mundo-/blob/main/utils/VistaPrevia/index.png
+
+Página Principal
+Agregar Cartas
+
+Agregar Cartas
+Borrar Cartas
+
+Borrar Cartas
+Buscar Cartas
+
+Buscar Cartas
+Modificar Cartas
+
+Modificar Cartas
+
 Instalación
 
     Clonar el Repositorio:
