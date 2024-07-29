@@ -1,3 +1,5 @@
+![logo](https://github.com/fernandoderrigo/C.D.T.M-Cartas-Del-Tercer-Mundo-/blob/main/utils/VistaPrevia/logo2.png)
+
 C.D.T.M - Cartas Del Tercer Mundo
 
 ¡Bienvenido a C.D.T.M - Cartas Del Tercer Mundo! Un juego de cartas de humor negro y diversión garantizada. Si te gustan las risas oscuras y los desafíos inesperados, este juego es para ti.
