@@ -1,31 +1,29 @@
 import bcrypt from 'bcrypt';
-import jwt from 'jsonwebtoken';
 import { PrismaClient } from '@prisma/client';
+import { registerSchema, updateSchema } from '../schemas/validationSchema.js';
+
 const prisma = new PrismaClient();
-import Joi from 'joi';
 
 // Controlador para el registro de usuarios
 export const registerUser = async (req, res) => {
-  const schema = Joi.object({
-    email: Joi.string().email().required(),
-    password: Joi.string().min(6).required(),
-    username: Joi.string().required()
-  });
-
-  const { error } = schema.validate(req.body);
+  // Validación de los datos de la solicitud
+  const { error } = registerSchema.validate(req.body);
   if (error) return res.status(400).json({ error: error.details[0].message });
 
   const { email, password, username } = req.body;
   const hashedPassword = await bcrypt.hash(password, 10);
 
   try {
+    // Verificar si el correo ya está registrado
     const existingUser = await prisma.user.findUnique({ where: { email } });
     if (existingUser) {
       return res.status(400).json({ error: 'Email already exists' });
     }
 
+    // Obtener el rol predeterminado de 'player'
     const role = await prisma.role.findUnique({ where: { roleName: 'player' } });
 
+    // Crear un nuevo usuario en la base de datos
     const user = await prisma.user.create({
       data: {
         email,
@@ -48,6 +46,7 @@ export const getUserById = async (req, res) => {
   const { id } = req.params;
 
   try {
+    // Buscar usuario por ID
     const user = await prisma.user.findUnique({
       where: { id: parseInt(id) }
     });
@@ -61,13 +60,8 @@ export const getUserById = async (req, res) => {
 
 // Controlador para actualizar un usuario
 export const updateUser = async (req, res) => {
-  const schema = Joi.object({
-    email: Joi.string().email(),
-    username: Joi.string(),
-    password: Joi.string().min(6)
-  });
-
-  const { error } = schema.validate(req.body);
+  // Validación de los datos de la solicitud
+  const { error } = updateSchema.validate(req.body);
   if (error) return res.status(400).json({ error: error.details[0].message });
 
   const { id } = req.params;
@@ -76,10 +70,12 @@ export const updateUser = async (req, res) => {
   try {
     const data = {};
 
+    // Actualizar solo los campos proporcionados
     if (email) data.email = email;
     if (username) data.username = username;
     if (password) data.password = await bcrypt.hash(password, 10);
 
+    // Actualizar el usuario en la base de datos
     const updatedUser = await prisma.user.update({
       where: { id: parseInt(id) },
       data
@@ -115,6 +111,7 @@ export const deleteUser = async (req, res) => {
 // Controlador para obtener todos los usuarios
 export const getAllUsers = async (req, res) => {
   try {
+    // Obtener todos los usuarios de la base de datos
     const users = await prisma.user.findMany();
     res.json({ users });
   } catch (err) {

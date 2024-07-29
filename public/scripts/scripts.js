@@ -16,19 +16,24 @@ const loadCards = async () => {
         cardsContainer.innerHTML = ''; // Limpiar el contenedor antes de agregar nuevas cartas
 
         // Verificar si data.cards existe y es un array
-        if (Array.isArray(data.cards)) {
-            data.cards.forEach(card => {
-                // Crear un nuevo elemento para cada carta
+        if (Array.isArray(data.blackCards) && Array.isArray(data.whiteCards)) {
+            data.blackCards.forEach(card => {
+                // Crear un nuevo elemento para cada carta negra
                 const cardElement = document.createElement('div');
-                cardElement.className = 'card';
-                cardElement.classList.add(card.type === 'black' ? 'black-card' : 'white-card');
+                cardElement.className = 'card black-card';
                 cardElement.textContent = card.text;
-                
-                // Añadir la carta al contenedor
+                cardsContainer.appendChild(cardElement);
+            });
+
+            data.whiteCards.forEach(card => {
+                // Crear un nuevo elemento para cada carta blanca
+                const cardElement = document.createElement('div');
+                cardElement.className = 'card white-card';
+                cardElement.textContent = card.text;
                 cardsContainer.appendChild(cardElement);
             });
         } else {
-            console.error('La respuesta de la API no contiene un array de cartas.');
+            console.error('La respuesta de la API no contiene arrays de cartas.');
         }
     } catch (error) {
         // Manejar errores en la solicitud o procesamiento de datos

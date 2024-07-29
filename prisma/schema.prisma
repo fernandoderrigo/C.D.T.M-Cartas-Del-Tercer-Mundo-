@@ -1,98 +1,108 @@
+// Definición de la fuente de datos (base de datos)
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider = "postgresql"         // Proveedor de base de datos (PostgreSQL)
+  url      = env("DATABASE_URL")  // URL de conexión a la base de datos
 }
 
+// Generador para crear el cliente Prisma
 generator client {
-  provider = "prisma-client-js"
+  provider = "prisma-client-js"   // Cliente Prisma para JavaScript/TypeScript
 }
 
+// Modelo User representa a los usuarios del sistema
 model User {
-  id        Int        @id @default(autoincrement())
-  email     String     @unique
-  username  String
-  password  String
-  createdAt DateTime   @default(now()) @map("created_at")
-  updatedAt DateTime   @default(now()) @updatedAt
-  roleId    Int        @default(1)
-  role      Role       @relation(fields: [roleId], references: [id], onUpdate: Cascade, onDelete: Cascade)
-  gamePlayers GamePlayer[]
-  plays      Play[]
-  scores     Score[]
-  gameHistories GameHistory[]
+  id             Int           @id @default(autoincrement())    // ID del usuario, autoincremental
+  email          String        @unique                         // Correo electrónico único
+  username       String                                      // Nombre de usuario
+  password       String                                      // Contraseña
+  createdAt      DateTime      @default(now()) @map("created_at")  // Fecha de creación
+  updatedAt      DateTime      @default(now()) @updatedAt      // Fecha de última actualización
+  roleId         Int           @default(1)                    // ID del rol del usuario, por defecto 1
+  role           Role          @relation(fields: [roleId], references: [id], onUpdate: Cascade, onDelete: Cascade) // Relación con el modelo Role
+  gamePlayers    GamePlayer[]                                // Relación con el modelo GamePlayer
+  plays          Play[]                                      // Relación con el modelo Play
+  scores         Score[]                                     // Relación con el modelo Score
+  gameHistories  GameHistory[]                               // Relación con el modelo GameHistory
 }
 
+// Modelo Role representa los roles de los usuarios
 model Role {
-  id        Int        @id @default(autoincrement())
-  roleName  String     @unique 
-  user      User[]     // Relación inversa
+  id        Int        @id @default(autoincrement())    // ID del rol, autoincremental
+  roleName  String     @unique                          // Nombre del rol, único
+  user      User[]                                      // Relación inversa con el modelo User
 }
 
-
+// Modelo BlackCard representa las cartas negras del juego
 model BlackCard {
-  id        Int       @id @default(autoincrement())
-  text      String
-  createdAt DateTime  @default(now())
-  plays     Play[]
+  id        Int        @id @default(autoincrement())   // ID de la carta negra, autoincremental
+  text      String                                    // Texto de la carta negra
+  createdAt DateTime   @default(now())                // Fecha de creación
+  plays     Play[]                                   // Relación con el modelo Play
 }
 
+// Modelo WhiteCard representa las cartas blancas del juego
 model WhiteCard {
-  id        Int       @id @default(autoincrement())
-  text      String
-  createdAt DateTime  @default(now())
-  plays     Play[]
+  id        Int        @id @default(autoincrement())   // ID de la carta blanca, autoincremental
+  text      String                                    // Texto de la carta blanca
+  createdAt DateTime   @default(now())                // Fecha de creación
+  plays     Play[]                                   // Relación con el modelo Play
 }
 
+// Modelo Game representa un juego
 model Game {
-  id          Int        @id @default(autoincrement())
-  createdAt   DateTime   @default(now())
-  gamePlayers GamePlayer[]
-  plays       Play[]
-  gameHistories GameHistory[]
-  scores      Score[]
+  id             Int            @id @default(autoincrement())   // ID del juego, autoincremental
+  createdAt      DateTime       @default(now())                 // Fecha de creación
+  gamePlayers    GamePlayer[]                                   // Relación con el modelo GamePlayer
+  plays          Play[]                                         // Relación con el modelo Play
+  gameHistories  GameHistory[]                                  // Relación con el modelo GameHistory
+  scores         Score[]                                        // Relación con el modelo Score
 }
 
+// Modelo GamePlayer representa los jugadores de un juego
 model GamePlayer {
-  id      Int    @id @default(autoincrement())
-  gameId  Int
-  userId  Int
-  game    Game   @relation(fields: [gameId], references: [id])
-  user    User   @relation(fields: [userId], references: [id])
-  @@unique([gameId, userId])
+  id      Int    @id @default(autoincrement())   // ID del jugador en el juego, autoincremental
+  gameId  Int                                // ID del juego
+  userId  Int                                // ID del usuario
+  game    Game   @relation(fields: [gameId], references: [id]) // Relación con el modelo Game
+  user    User   @relation(fields: [userId], references: [id]) // Relación con el modelo User
+  @@unique([gameId, userId])                   // Combinación única de gameId y userId
 }
 
+// Modelo Play representa una jugada en un juego
 model Play {
-  id           Int         @id @default(autoincrement())
-  gameId       Int
-  userId       Int
-  blackCardId  Int
-  whiteCardId  Int
-  createdAt    DateTime    @default(now())
-  game         Game        @relation(fields: [gameId], references: [id])
-  user         User        @relation(fields: [userId], references: [id])
-  blackCard    BlackCard   @relation(fields: [blackCardId], references: [id], onDelete: Cascade, onUpdate: Cascade)
-  whiteCard    WhiteCard   @relation(fields: [whiteCardId], references: [id], onDelete: Cascade, onUpdate: Cascade)
-  @@unique([gameId, userId, blackCardId, whiteCardId])
+  id           Int         @id @default(autoincrement())    // ID de la jugada, autoincremental
+  gameId       Int                                      // ID del juego
+  userId       Int                                      // ID del usuario
+  blackCardId  Int                                      // ID de la carta negra
+  whiteCardId  Int                                      // ID de la carta blanca
+  createdAt    DateTime    @default(now())               // Fecha de creación
+  game         Game        @relation(fields: [gameId], references: [id])  // Relación con el modelo Game
+  user         User        @relation(fields: [userId], references: [id])  // Relación con el modelo User
+  blackCard    BlackCard   @relation(fields: [blackCardId], references: [id], onDelete: Cascade, onUpdate: Cascade) // Relación con el modelo BlackCard
+  whiteCard    WhiteCard   @relation(fields: [whiteCardId], references: [id], onDelete: Cascade, onUpdate: Cascade) // Relación con el modelo WhiteCard
+  @@unique([gameId, userId, blackCardId, whiteCardId]) // Combinación única de gameId, userId, blackCardId y whiteCardId
 }
 
+// Modelo GameHistory representa el historial de un juego
 model GameHistory {
-  id        Int       @id @default(autoincrement())
-  gameId    Int
-  userId    Int
-  score     Int
-  createdAt DateTime  @default(now())
-  game      Game      @relation(fields: [gameId], references: [id])
-  user      User      @relation(fields: [userId], references: [id])
-  @@unique([gameId, userId])
+  id        Int       @id @default(autoincrement())  // ID del historial del juego, autoincremental
+  gameId    Int                                  // ID del juego
+  userId    Int                                  // ID del usuario
+  score     Int                                  // Puntuación del usuario en el juego
+  createdAt DateTime  @default(now())             // Fecha de creación
+  game      Game      @relation(fields: [gameId], references: [id])  // Relación con el modelo Game
+  user      User      @relation(fields: [userId], references: [id])  // Relación con el modelo User
+  @@unique([gameId, userId])                     // Combinación única de gameId y userId
 }
 
+// Modelo Score representa la puntuación de un usuario en un juego
 model Score {
-  id        Int       @id @default(autoincrement())
-  userId    Int
-  gameId    Int
-  score     Int
-  createdAt DateTime  @default(now())
-  user      User      @relation(fields: [userId], references: [id])
-  game      Game      @relation(fields: [gameId], references: [id])
-  @@unique([userId, gameId])
+  id        Int       @id @default(autoincrement())  // ID de la puntuación, autoincremental
+  userId    Int                                  // ID del usuario
+  gameId    Int                                  // ID del juego
+  score     Int                                  // Puntuación del usuario
+  createdAt DateTime  @default(now())             // Fecha de creación
+  user      User      @relation(fields: [userId], references: [id])  // Relación con el modelo User
+  game      Game      @relation(fields: [gameId], references: [id])  // Relación con el modelo Game
+  @@unique([userId, gameId])                     // Combinación única de userId y gameId
 }
